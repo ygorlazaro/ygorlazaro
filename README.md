@@ -11,4 +11,4 @@ Specializations: Software Developer, ASP.Net, Windows Forms, JavaScript, TypeScr
 
 I received the Microsoft Five Start Developer Certification.
 
-![MSDN 5 Star Professional Card](https://github.com/ygorlazaro/ygorlazaro/blob/master/card.jpeg)
+![MSDN 5 Star Professional Card](https://github.com/ygorlazaro/ygorlazaro/blob/master/card.jpeg =250x)
