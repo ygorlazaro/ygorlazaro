@@ -9,6 +9,8 @@ I am happy because I work with technologies I like.
 
 Specializations: Software Developer, ASP.Net, Windows Forms, JavaScript, TypeScript, Vue.JS, SQL Server, .NET Core, React, React Native, Node. 
 
+<img height="137px" src="https://github-readme-stats.vercel.app/api?username=ygorlazaro&hide_title=true&hide_border=true&show_icons=true&include_all_commits=true&line_height=21&bg_color=0,EC6C6C,FFD479,FFFC79,73FA79&theme=graywhite" /><!-- wi*quL3fcV --><img align="" height="137px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ygorlazaro&hide_title=true&hide_border=true&layout=compact&bg_color=0,73FA79,73FDFF,D783FF&theme=graywhite" />
+
 I received the Microsoft Five Start Developer Certification.
 
 ![MSDN 5 Star Professional Card](https://github.com/ygorlazaro/ygorlazaro/blob/master/card.jpeg)
