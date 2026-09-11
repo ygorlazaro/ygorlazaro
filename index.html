@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ygor Lazaro — Software Architect &amp; Tech Lead</title>
+<meta name="description" content="Ygor Lazaro — Software Architect e Tech Lead. 22+ anos em engenharia backend. Projetos atuais e disponibilidade para novas oportunidades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0A1D31;
+    --ink-2: #0D2338;
+    --grid: #13314F;
+    --grid-soft: rgba(127,184,217,0.12);
+    --paper: #DCE7F2;
+    --paper-dim: #93A9BE;
+    --accent-cool: #7FB8D9;
+    --accent-warm: #D9622B;
+    --line: #2A4B6B;
+    --max: 760px;
+    --margin: clamp(24px, 6vw, 96px);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono{
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  .grid-bg{
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-soft) 1px, transparent 1px);
+    background-size: 32px 32px;
+    opacity: 0.6;
+  }
+
+  .crop{
+    position: fixed;
+    width: 22px;
+    height: 22px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .crop::before, .crop::after{
+    content: "";
+    position: absolute;
+    background: var(--line);
+  }
+  .crop::before{ width: 100%; height: 1px; top: 50%; }
+  .crop::after{ height: 100%; width: 1px; left: 50%; }
+  .crop.tl{ top: 18px; left: 18px; }
+  .crop.tr{ top: 18px; right: 18px; }
+  .crop.bl{ bottom: 18px; left: 18px; }
+  .crop.br{ bottom: 18px; right: 18px; }
+
+  .ruler{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--margin);
+    z-index: 1;
+    pointer-events: none;
+    display: none;
+  }
+  @media (min-width: 900px){
+    .ruler{ display: block; }
+  }
+  .ruler span{
+    position: absolute;
+    left: 10px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--paper-dim);
+    transform-origin: left top;
+    transform: rotate(90deg);
+    white-space: nowrap;
+  }
+
+  main{
+    position: relative;
+    z-index: 3;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: clamp(64px, 12vh, 120px) var(--margin) 120px;
+  }
+
+  .sheet-label{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--paper-dim);
+    margin-bottom: 20px;
+  }
+  .sheet-label .num{ color: var(--accent-cool); }
+  .sheet-label .rule{
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* HERO */
+  .hero h1{
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 600;
+    line-height: 1.08;
+    margin: 0 0 14px;
+    color: var(--paper);
+    letter-spacing: -0.01em;
+  }
+  .hero .role{
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    color: var(--accent-cool);
+    margin: 0 0 28px;
+    font-weight: 500;
+  }
+  .hero p.lede{
+    max-width: 58ch;
+    font-size: 1.05rem;
+    color: var(--paper);
+    opacity: 0.92;
+    margin: 0 0 36px;
+  }
+  .facts{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .facts div{
+    background: var(--ink);
+    padding: 16px 18px;
+  }
+  .facts .n{
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .facts .l{
+    font-size: 11px;
+    color: var(--paper-dim);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+
+  /* AVAILABILITY (moved near top) */
+  section.availability{
+    margin-top: clamp(56px, 9vh, 88px);
+  }
+  .status-block{
+    border: 1px solid var(--accent-warm);
+    padding: 30px 32px;
+    position: relative;
+  }
+  .status{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--accent-warm);
+    margin-bottom: 14px;
+  }
+  .status .dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-warm);
+  }
+  .status-block h2{
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    margin: 0 0 12px;
+    font-weight: 600;
+  }
+  .status-block p{
+    margin: 0 0 22px;
+    max-width: 56ch;
+    opacity: 0.9;
+  }
+  .contact-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 28px;
+  }
+  .contact-links a{
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    font-size: 0.98rem;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .contact-links a:hover,
+  .contact-links a:focus-visible{
+    color: var(--accent-cool);
+    border-color: var(--accent-cool);
+  }
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent-cool);
+    outline-offset: 3px;
+  }
+
+  /* CAREER */
+  section.career{
+    margin-top: clamp(80px, 12vh, 120px);
+  }
+  .career-highlights{
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .career-highlights li{
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 18px;
+  }
+  .career-highlights .metric{
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    color: var(--accent-cool);
+    font-size: 0.92rem;
+    padding-top: 1px;
+  }
+  .career-highlights p{
+    margin: 0;
+    opacity: 0.9;
+  }
+  @media (max-width: 560px){
+    .career-highlights li{ grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  .stack-groups{
+    display: grid;
+    gap: 18px;
+  }
+  .stack-group .g-label{
+    font-size: 11px;
+    color: var(--paper-dim);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .stack{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .stack span{
+    font-size: 11px;
+    padding: 4px 9px;
+    border: 1px solid var(--line);
+    color: var(--paper-dim);
+    letter-spacing: 0.03em;
+  }
+
+  /* PROJECTS */
+  section.projects{
+    margin-top: clamp(80px, 12vh, 120px);
+  }
+  .project{
+    border: 1px solid var(--line);
+    padding: 28px 30px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .project::before{
+    content: attr(data-tag);
+    position: absolute;
+    top: -11px;
+    left: 24px;
+    background: var(--ink);
+    padding: 0 8px;
+    font-size: 11px;
+    color: var(--accent-cool);
+    letter-spacing: 0.06em;
+  }
+  .project h3{
+    margin: 6px 0 8px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--paper);
+  }
+  .project h3 a{
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .project h3 a:hover, .project h3 a:focus-visible{
+    color: var(--accent-cool);
+    border-color: var(--accent-cool);
+  }
+  .project p{
+    margin: 0 0 16px;
+    color: var(--paper);
+    opacity: 0.88;
+    max-width: 62ch;
+  }
+
+  footer{
+    margin-top: 100px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--paper-dim);
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="crop tl" aria-hidden="true"></div>
+  <div class="crop tr" aria-hidden="true"></div>
+  <div class="crop bl" aria-hidden="true"></div>
+  <div class="crop br" aria-hidden="true"></div>
+  <div class="ruler mono" aria-hidden="true"><span>YGORLAZARO.COM — REV. 2026</span></div>
+
+  <main>
+
+    <section class="hero">
+      <div class="sheet-label mono"><span class="num">FL. 01</span><span class="rule"></span><span>PERFIL</span></div>
+      <h1>Ygor Lazaro</h1>
+      <p class="role">Software Architect &amp; Tech Lead</p>
+      <p class="lede">22+ anos arquitetando e escalando sistemas que sustentam operações reais — de plataformas com 1,7M+ clientes a serviços com 40 mil usuários simultâneos. Passagens por startups (como ex-CEO), scale-ups e integrações enterprise no Brasil, América Latina e Europa.</p>
+
+      <div class="facts mono">
+        <div><div class="n">22+</div><div class="l">ANOS DE EXPERIÊNCIA</div></div>
+        <div><div class="n">1,7M+</div><div class="l">CLIENTES EM PLATAFORMAS ARQUITETADAS</div></div>
+        <div><div class="n">9 PAÍSES</div><div class="l">EM ENTREGAS INTERNACIONAIS</div></div>
+      </div>
+    </section>
+
+    <section class="availability">
+      <div class="sheet-label mono"><span class="num">FL. 02</span><span class="rule"></span><span>DISPONIBILIDADE</span></div>
+
+      <div class="status-block">
+        <div class="status mono"><span class="dot"></span>ABERTO A OPORTUNIDADES</div>
+        <h2>Disponível para vagas de Senior Fullstack / Backend Engineer</h2>
+        <p>Se você está montando um time e precisa de alguém com histórico em arquitetura, liderança técnica e sistemas backend em escala, vamos conversar.</p>
+        <div class="contact-links">
+          <a href="mailto:ygor@ygorlazaro.com">ygor@ygorlazaro.com</a>
+          <a href="https://wa.me/5521990346500" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/ygorlazaro" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/ygorlazaro" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="career">
+      <div class="sheet-label mono"><span class="num">FL. 03</span><span class="rule"></span><span>TRAJETÓRIA</span></div>
+
+      <ul class="career-highlights">
+        <li>
+          <div class="metric mono">1,7M+ clientes</div>
+          <p>Arquitetou a nova plataforma de clientes da Aramis (Cognitivo.AI), substituindo uma solução white-label.</p>
+        </li>
+        <li>
+          <div class="metric mono">120 lojas</div>
+          <p>Liderou o rollout do app de vendas em 120 unidades, para mais de 2.000 funcionários, com integração completa ao ERP.</p>
+        </li>
+        <li>
+          <div class="metric mono">300 mil alunos</div>
+          <p>Projetou e liderou a plataforma do ProENEM, ProMilitares, ProMedicina e Prodígio, com 40 mil usuários simultâneos em transmissões ao vivo.</p>
+        </li>
+        <li>
+          <div class="metric mono">38 mil alunos</div>
+          <p>Construiu a plataforma de tecnologia e de alunos do MedGrupo, presente em 98 unidades.</p>
+        </li>
+        <li>
+          <div class="metric mono">-80% latência</div>
+          <p>Reduziu o tempo de consultas a banco de dados em até 80% em projeto de modernização de sistemas do TRF2.</p>
+        </li>
+        <li>
+          <div class="metric mono">9 países</div>
+          <p>Conduziu entregas de engenharia entre Brasil, Argentina, Colômbia, Equador, França, Espanha, Reino Unido, Países Baixos e Ucrânia.</p>
+        </li>
+      </ul>
+
+      <div class="stack-groups">
+        <div class="stack-group">
+          <div class="g-label mono">LINGUAGENS &amp; FRAMEWORKS</div>
+          <div class="stack mono">
+            <span>C#</span><span>.NET / .NET Core</span><span>TypeScript</span><span>JavaScript</span>
+            <span>Node.js</span><span>NestJS</span><span>React</span><span>React Native</span>
+            <span>Vue.js</span><span>AngularJS</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="g-label mono">BANCOS DE DADOS</div>
+          <div class="stack mono">
+            <span>PostgreSQL</span><span>SQL Server</span><span>MySQL</span><span>MongoDB</span><span>Redis</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="g-label mono">CLOUD, DEVOPS &amp; MENSAGERIA</div>
+          <div class="stack mono">
+            <span>AWS</span><span>Azure</span><span>Docker</span><span>RabbitMQ</span><span>Kafka</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects">
+      <div class="sheet-label mono"><span class="num">FL. 04</span><span class="rule"></span><span>PROJETOS ATUAIS</span></div>
+
+      <div class="project" data-tag="EM DESENVOLVIMENTO">
+        <h3><a href="https://github.com/ygorlazaro/fenicia" target="_blank" rel="noopener">Fenicia</a></h3>
+        <p>ERP SaaS modular e open-source, com multi-tenancy baseada em colunas e permissões por empresa. Migração arquitetural em andamento de MediatR para um padrão Repository genérico.</p>
+        <div class="stack mono">
+          <span>.NET 10</span>
+          <span>Blazor</span>
+          <span>PostgreSQL</span>
+          <span>Open Source</span>
+        </div>
+      </div>
+
+      <div class="project" data-tag="v0.73+">
+        <h3><a href="https://github.com/ygorlazaro/osb-dotnet" target="_blank" rel="noopener">OSB / OSLANG</a></h3>
+        <p>Shell de sistema operacional com inspiração retrô e linguagem de scripting própria, com especificação completa de linguagem, suporte a OOP, biblioteca padrão e controle de terminal.</p>
+        <div class="stack mono">
+          <span>C#</span>
+          <span>.NET 10</span>
+          <span>Linguagem própria</span>
+        </div>
+      </div>
+
+      <div class="project" data-tag="OPEN SOURCE">
+        <h3><a href="https://github.com/ygorlazaro/bloquinhos" target="_blank" rel="noopener">Bloquinhos</a></h3>
+        <p>Aplicativo de notas e blocos de anotações rápidas.</p>
+        <div class="stack mono">
+          <span>C#</span>
+          <span>.NET</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mono">
+      <span>© 2026 YGOR LAZARO</span>
+      <span>YGORLAZARO.COM</span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
